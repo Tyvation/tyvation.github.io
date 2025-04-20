@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark ([data-theme="dark"] *);
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* Light Theme (Default) */
 @layer base{
@@ -10,7 +10,7 @@
     --primary: oklch(.65 0.25 260);
     --primary-hover: oklch(.70 0.25 260);
     --secondary: oklch(.70 0.2 160);
-    --accent: oklch(0.66 0.1196 263.17);
+    --accent: oklch(0.85 0.1327 83.92);
 
     --color-neutral-100: oklch(.98 0.01 300);
     --color-neutral-300: oklch(.70 0.01 300);
@@ -25,7 +25,7 @@
     --primary: oklch(.75 0.25 260);
     --primary-hover: oklch(.80 0.25 260);
     --secondary: oklch(.80 0.2 160);
-    --accent: oklch(0.85 0.1327 83.92);
+    --accent: oklch(0.67 0.145 263.17);
 
     --color-neutral-100: oklch(.10 0.01 300);
     --color-neutral-300: oklch(.30 0.01 300);
@@ -41,9 +41,22 @@
     --color-secondary: var(--secondary);
     --color-accent: var(--accent);
   }
-  body, div, h1, p, button, Nav, Link {
+
+  body, div, h1, h2, p, a, button, Nav, Link, Image {
     background-color: var(--background);
     color: var(--foreground);
-    transition: background-color 1s ease, color 1s ease;
+    transition: background-color .5s ease, color .5s ease;
   }
+}
+
+@layer components{
+  .swiper-pagination{
+    background-color: transparent !important;
+  }
+  .swiper-pagination-bullet {
+    background-color: var(--background) !important;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: var(--primary-hover) !important;
+   }
 }

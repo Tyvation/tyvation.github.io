@@ -25,7 +25,7 @@ export default function FloatingNavbar() {
             className={`relative group w-10 h-10 flex items-center justify-center rounded-full transition transform ${
               isActive
                 ? "bg-primary text-white hover:bg-primary-hover"
-                : "text-neutral-300 hover:-translate-y-1 hover:scale-110"
+                : "text-neutral-300 hover:-translate-y-1 hover:scale-110 bg-transparent"
             }`}
           >
             {item.icon}

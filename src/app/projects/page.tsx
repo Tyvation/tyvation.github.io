@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const projects = [
   {
@@ -22,40 +22,43 @@ const projects = [
   {
     title: "個人投資助手",
     description: "幫助你追蹤台股與美股的個人投資儀表板。",
-    image: "/images/zz.jpg",
+    image: "/images/zz.png",
     link: "https://your-invest-site.com",
   },
 ];
 
 export default function ProjectSlider() {
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto rounded-3xl bg-background overflow-hidden transition">
       <Swiper
-        modules={[Navigation, Autoplay]}
-        navigation
-        autoplay={{ delay: 51111000 }}
+        modules={[Pagination, Autoplay]}
+        pagination={{
+          clickable: true,
+          dynamicBullets: true,
+          dynamicMainBullets: 1,
+        }}
+        autoplay={{ delay: 55551000 }}
         spaceBetween={10}
         slidesPerView={1}
+        
       >
         {projects.map((project, index) => (//  
           <SwiperSlide key={index}>
-            <div className="relative h-[400px] bg-black rounded-3xl overflow-hidden"> 
+            <div className="relative h-[400px] rounded-3xl overflow-hidden"> 
               <Image 
                 src={project.image} 
                 alt={project.title} 
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-35% from-black to-50%">
-              </div>
-              <div className="absolute bottom-0 inset-x-0 p-5 z-10 ">
-                <h2 className="text-xl font-bold mb-1">{project.title}</h2>
-                <p className="text-gray-600 mb-4">{project.description}</p>
+              <div className="absolute bottom-0 inset-x-0 p-5 z-10 bg-foreground">
+                <h2 className="text-xl font-bold mb-1 text-background bg-transparent">{project.title}</h2>
+                <p className="text-neutral-400 mb-4 bg-transparent">{project.description}</p>
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 bg-black text-white rounded hover:bg-gray-800"
+                  className="inline-block px-4 py-2 text-white font-semibold bg-primary hover:bg-primary-hover hover:scale-105 rounded-2xl transition"
                 >
                   查看專案
                 </a> 
