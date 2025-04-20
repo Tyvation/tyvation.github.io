@@ -1,10 +1,10 @@
 import "@/styles/globals.css";
 import { ReactNode } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 
 export const metadata = {
-  title: "My Portfolio",
+  title: "Test Portfolio",
   description: "Notion-style portfolio with Next.js",
 };
 

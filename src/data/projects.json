@@ -1,0 +1,33 @@
+[
+    {
+        "title": "Project 1",
+        "description": "This is the description for project 1.",
+        "link": "https://link-to-project1.com",
+        "slides": [
+        {
+            "image": "/images/project1-1.jpg",
+            "text": "This is slide 1 for Project 1"
+        },
+        {
+            "image": "/images/project1-2.jpg",
+            "text": "This is slide 2 for Project 1"
+        }
+        ]
+    },
+    {
+        "title": "Project 2",
+        "description": "This is the description for project 2.",
+        "link": "https://link-to-project2.com",
+        "slides": [
+        {
+            "image": "/images/project2-1.jpg",
+            "text": "This is slide 1 for Project 2"
+        },
+        {
+            "image": "/images/project2-2.jpg",
+            "text": "This is slide 2 for Project 2"
+        }
+        ]
+    }
+]
+  
