@@ -6,6 +6,15 @@ export default function Home() {
     <section>
       <About />
       <ProjectSlider />
+      <About />
+      <About />
+      <About />
+      <About />
+      <About />
+      <About />
+      <About />
+      <About />
+      <About />
     </section>
   );
 }

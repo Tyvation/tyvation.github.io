@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-/* Light Theme (Default) */
 @layer base{
+  /* Light Theme (Default) */
   :root {
     --background: oklch(.99 0.005 300);
     --foreground: oklch(.15 0.01 300);
@@ -11,26 +9,16 @@
     --primary-hover: oklch(.70 0.25 260);
     --secondary: oklch(.70 0.2 160);
     --accent: oklch(0.85 0.1327 83.92);
-
-    --color-neutral-100: oklch(.98 0.01 300);
-    --color-neutral-300: oklch(.70 0.01 300);
-    --color-neutral-600: oklch(.40 0.01 300);
-    --color-neutral-900: oklch(.10 0.01 300);
   }
 
   /* Dark Theme */
-  [data-theme="dark"] {
+  .dark {
     --background: oklch(.15 0.01 300);
     --foreground: oklch(.95 0.01 300);
     --primary: oklch(.75 0.25 260);
     --primary-hover: oklch(.80 0.25 260);
     --secondary: oklch(.80 0.2 160);
     --accent: oklch(0.67 0.145 263.17);
-
-    --color-neutral-100: oklch(.10 0.01 300);
-    --color-neutral-300: oklch(.30 0.01 300);
-    --color-neutral-600: oklch(.60 0.01 300);
-    --color-neutral-900: oklch(.90 0.01 300);
   }
 
   @theme {
@@ -59,4 +47,15 @@
   .swiper-pagination-bullet-active {
     background-color: var(--primary-hover) !important;
    }
+  
+  /* Hide default scrollbar and use progress bar instead */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+  }
 }

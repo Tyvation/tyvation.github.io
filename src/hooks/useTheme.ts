@@ -14,8 +14,12 @@ export function useTheme() {
   }, []);
 
   useEffect(() => {
-    // 應用主題到 documentElement
-    document.documentElement.setAttribute("data-theme", theme);
+    // 應用主題到 documentElement 使用 Tailwind dark mode
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
     localStorage.setItem("theme", theme);
   }, [theme]);
 
