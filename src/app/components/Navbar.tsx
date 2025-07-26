@@ -15,7 +15,7 @@ export default function FloatingNavbar() {
   const path = usePathname();
 
   return (
-    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-foreground backdrop-blur-md shadow-2xl border border-primary rounded-full px-4 py-2 flex gap-4 items-center">
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-foreground backdrop-blur-md shadow-lg border rounded-full px-2 py-1 flex gap-4 items-center">
       {navItems.map((item) => {
         const isActive = path === item.href;
         return (
@@ -24,12 +24,12 @@ export default function FloatingNavbar() {
             href={item.href}
             className={`relative group w-10 h-10 flex items-center justify-center rounded-full transition transform ${
               isActive
-                ? "bg-primary text-white hover:bg-primary-hover"
-                : "text-neutral-300 hover:-translate-y-1 hover:scale-110 bg-transparent"
+                ? "bg-primary text-white hover:bg-primary-hover hover:scale-110 transition-all duration-300"
+                : "text-neutral-300 hover:scale-110 bg-transparent duration-300"
             }`}
           >
             {item.icon}
-            <span className="absolute bottom-[3rem] text-xs text-foreground opacity-0 group-hover:opacity-100 group-hover:text-lg transition-all pointer-events-none">
+            <span className="absolute bottom-[-1rem] text-xs text-foreground opacity-0 group-hover:opacity-100 group-hover:text-lg group-hover:bottom-[-2rem] transition-all pointer-events-none">
               {item.label}
             </span>
           </Link>

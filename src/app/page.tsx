@@ -1,9 +1,11 @@
-import Hero from "@/app/components/Hero";
+import ProjectSlider from "@/app/projects/page";
+import About from "@/app/about/page";
 
 export default function Home() {
   return (
     <section>
-      <Hero />
+      <About />
+      <ProjectSlider />
     </section>
   );
 }

@@ -29,44 +29,45 @@ const projects = [
 
 export default function ProjectSlider() {
   return (
-    <div className="w-full max-w-4xl mx-auto rounded-3xl bg-background overflow-hidden transition">
-      <Swiper
-        modules={[Pagination, Autoplay]}
-        pagination={{
-          clickable: true,
-          dynamicBullets: true,
-          dynamicMainBullets: 1,
-        }}
-        autoplay={{ delay: 55551000 }}
-        spaceBetween={10}
-        slidesPerView={1}
-        
-      >
-        {projects.map((project, index) => (//  
-          <SwiperSlide key={index}>
-            <div className="relative h-[400px] rounded-3xl overflow-hidden"> 
-              <Image 
-                src={project.image} 
-                alt={project.title} 
-                fill
-                className="object-cover"
-              />
-              <div className="absolute bottom-0 inset-x-0 p-5 z-10 bg-foreground">
-                <h2 className="text-xl font-bold mb-1 text-background bg-transparent">{project.title}</h2>
-                <p className="text-neutral-400 mb-4 bg-transparent">{project.description}</p>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 text-white font-semibold bg-primary hover:bg-primary-hover hover:scale-105 rounded-2xl transition"
-                >
-                  查看專案
-                </a> 
+    <div className="py-4">
+      <div className="w-full max-w-4xl mx-auto rounded-3xl bg-transparent overflow-hidden transition">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 1,
+          }}
+          autoplay={{ delay: 55551000 }}
+          spaceBetween={10}
+          slidesPerView={1}
+        >
+          {projects.map((project, index) => (//
+            <SwiperSlide key={index}>
+              <div className="relative h-[400px] rounded-3xl overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute bottom-0 inset-x-0 p-5 z-10 bg-foreground">
+                  <h2 className="text-xl font-bold mb-1 text-background bg-transparent">{project.title}</h2>
+                  <p className="text-neutral-400 mb-4 bg-transparent">{project.description}</p>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-4 py-2 text-white font-semibold bg-primary hover:bg-primary-hover hover:scale-105 rounded-2xl transition"
+                  >
+                    查看專案
+                  </a>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 }
