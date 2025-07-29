@@ -1,19 +1,41 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import "@/styles/globals.css";
 import { ReactNode } from "react";
+import { Archivo_Black, Bebas_Neue } from 'next/font/google';
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ScrollProgress from "@/app/components/ScrollProgress";
+import RainBackground from "@/app/components/RainBackground";
+import ThemedFaultyTerminal from '@/app/components/ThemedFaultyTerminal';
+import InteractiveGrid from "./components/InteractiveGrid";
 
-export const metadata = {
-  title: "Test Portfolio",
-  description: "Notion-style portfolio with Next.js",
-};
+
+// Banner-specific fonts
+const archivoBlack = Archivo_Black({ weight: ['400'], subsets: ['latin'] });
+const bebasNeue = Bebas_Neue({ weight: ['400'], subsets: ['latin'] });
+
+// Export for use in components
+export { archivoBlack, bebasNeue };
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" >
-      <body className="bg-background text-foreground font-sans leading-relaxed tracking-tight">
+      <body className={`bg-background text-foreground leading-relaxed tracking-tight relative`}>
+        <InteractiveGrid
+          color='bg-foreground' 
+          hoverColor='bg-primary/50'
+          gridSize={60}
+          effectRadius={200}
+          minLineLength={2}
+          maxLineLength={45}
+          lineThickness={4}
+          gapSize={0}
+          transitionDuration={0.5}
+          waveAmplitude={8}
+          waveSpeed={1}
+        />
         <ScrollProgress />
-        <main className="max-w-3xl mx-auto px-4 pt-24 pb-12 bg-transparent">{children}</main>
+        <main className="max-w-3xl mx-auto px-4 pt-24 pb-12 bg-transparent relative z-10">{children}</main>
         <Navbar />
         <Footer />
       </body>

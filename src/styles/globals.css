@@ -1,24 +1,26 @@
 @import "tailwindcss";
 
 @layer base{
-  /* Light Theme (Default) */
-  :root {
-    --background: oklch(.99 0.005 300);
-    --foreground: oklch(.15 0.01 300);
-    --primary: oklch(.65 0.25 260);
-    --primary-hover: oklch(.70 0.25 260);
-    --secondary: oklch(.70 0.2 160);
-    --accent: oklch(0.85 0.1327 83.92);
+  :root { 
+    --background: #e5f0e5;
+    --foreground: #284828;
+    --primary: #3bb828;
+    --primary-hover: #66c785;
+    --secondary: #90d0c2;
+    --accent: #d1a019;
+    --theme-toggle: #ffe08b;
+    --t-theme-toggle: #b97e2c;
   }
 
-  /* Dark Theme */
-  .dark {
-    --background: oklch(.15 0.01 300);
-    --foreground: oklch(.95 0.01 300);
-    --primary: oklch(.75 0.25 260);
-    --primary-hover: oklch(.80 0.25 260);
-    --secondary: oklch(.80 0.2 160);
-    --accent: oklch(0.67 0.145 263.17);
+  .dark { 
+    --background: #282e28;
+    --foreground: #b8d8b8;
+    --primary: #7adf6a;
+    --primary-hover: #66c785;
+    --secondary: #2e6e60;
+    --accent: #e2b740;
+    --theme-toggle: #6dbffe;
+    --t-theme-toggle: #365ebc;
   }
 
   @theme {
@@ -28,13 +30,97 @@
     --color-primary-hover: var(--primary-hover);
     --color-secondary: var(--secondary);
     --color-accent: var(--accent);
+    --color-theme-toggle: var(--theme-toggle);
+    --color-t-theme-toggle: var(--t-theme-toggle);
   }
 
-  body, div, h1, h2, p, a, button, Nav, Link, Image {
+  body {
     background-color: var(--background);
     color: var(--foreground);
     transition: background-color .5s ease, color .5s ease;
   }
+
+  .bg-container-blur {
+    background-color: color-mix(in srgb, var(--foreground) 50%, transparent);
+    transition: background-color .5s ease;
+
+  }
+  
+  /* Only specific elements get background, not all divs */
+  .bg-section {
+    background-color: color-mix(in srgb, var(--background) 0%, transparent);
+    transition: background-color .5s ease;
+  }
+  
+  /* Solid background for components that need full opacity */
+  .bg-solid {
+    background-color: var(--background);
+    transition: background-color .5s ease;
+  }
+
+  /* Clean Glassmorphism Effect */
+  .liquid-glass {
+    background: color-mix(in srgb, var(--foreground) 25%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    z-index: 1;
+  }
+
+  
+  .fill:hover {
+    background:
+      radial-gradient(100% 58% at top   ,var(--foreground)   99%,green) calc(0*100%/3) 0/50.7% 180%,
+      radial-gradient(100% 58% at bottom,green 99%,var(--foreground)  ) calc(3*100%/3) 0/50.7% 180%,
+      radial-gradient(100% 58% at top   ,var(--foreground)   99%,green) calc(6*100%/3) 0/50.7% 180%,
+      radial-gradient(100% 58% at bottom,green 99%,var(--foreground)  ) calc(9*100%/3) 0/50.7% 180%,
+      linear-gradient(green,green) bottom/100% 0%;
+    background-repeat:no-repeat;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    display:inline-block;
+    animation:
+      move 1s linear infinite;
+  }
+
+  .fill:before {
+    content:'';
+    height: 0;
+    transition: 2s;
+  }
+
+  .fill:hover:before {
+    height: 100%;
+  }
+
+  @keyframes move {
+    to {
+      background-position:
+        calc(-6*100%/3) 0,
+        calc(-3*100%/3) 0,
+        calc(0*100%/3) 0,
+        calc(3*100%/3) 0,
+        bottom;
+    }
+  }
+
 }
 
 @layer components{

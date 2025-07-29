@@ -30,7 +30,7 @@ const projects = [
 export default function ProjectSlider() {
   return (
     <div className="py-4">
-      <div className="w-full max-w-4xl mx-auto rounded-3xl bg-transparent overflow-hidden transition">
+      <div className="w-full max-w-4xl mx-auto rounded-3xl bg-solid overflow-hidden transition">
         <Swiper
           modules={[Pagination, Autoplay]}
           pagination={{
@@ -58,7 +58,7 @@ export default function ProjectSlider() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block px-4 py-2 text-white font-semibold bg-primary hover:bg-primary-hover hover:scale-105 rounded-2xl transition"
+                    className="inline-block px-4 py-2 text-foreground font-semibold bg-primary hover:bg-primary-hover hover:scale-105 rounded-2xl transition"
                   >
                     查看專案
                   </a>
