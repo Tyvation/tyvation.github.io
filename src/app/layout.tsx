@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import "@/styles/globals.css";
 import { ReactNode } from "react";
 import { Archivo_Black, Bebas_Neue } from 'next/font/google';
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ScrollProgress from "@/app/components/ScrollProgress";
-import RainBackground from "@/app/components/RainBackground";
-import ThemedFaultyTerminal from '@/app/components/ThemedFaultyTerminal';
 import InteractiveGrid from "./components/InteractiveGrid";
 
 

@@ -24,7 +24,7 @@ export default function InteractiveGrid({
   maxLineLength = 20,
   lineThickness = 2,
   gapSize = 2,
-  transitionDuration = 0.2,
+  transitionDuration = 0.2, // eslint-disable-line @typescript-eslint/no-unused-vars
   waveAmplitude = 10,
   waveSpeed = 2
 }: InteractiveGridProps = {}) {
@@ -99,7 +99,7 @@ export default function InteractiveGrid({
     }
 
     grid.appendChild(fragment);
-  }, [gridSize, lineThickness, minLineLength, gapSize, transitionDuration, color]);
+  }, [gridSize, lineThickness, minLineLength, gapSize, color]);
 
   useEffect(() => {
     createGrid();
@@ -219,7 +219,7 @@ export default function InteractiveGrid({
         }
       }
     }
-  }, [effectRadius, minLineLength, maxLineLength, gapSize, color, hoverColor]);
+  }, [effectRadius, minLineLength, maxLineLength, gapSize, color, hoverColor, lineThickness]);
 
   useEffect(() => {
     let rafId: number;
