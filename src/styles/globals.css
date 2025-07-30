@@ -1,5 +1,108 @@
 @import "tailwindcss";
 
+/* Pokemon Card Holographic Effect - Exact Copy from d.css */
+.holo-card {
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  isolation: isolate;
+  will-change: transform;
+  transform-origin: center;
+  
+  //border-radius: 5% / 3.5%;
+  box-shadow: 
+    -5px -5px 5px -5px var(--primary), 
+    5px 5px 5px -5px var(--accent), 
+    -7px -7px 10px -5px transparent, 
+    7px 7px 10px -5px transparent, 
+    0 0 5px 0px rgba(255,255,255,0);
+  
+  transition: transform 0.5s ease, box-shadow 0.2s ease;
+  will-change: transform, filter;
+  
+  background-color: var(--background);
+  transition: background-color 0.5s ease, color 1s;
+}
+
+
+.holo-card::before,
+.holo-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  mix-blend-mode: color-dodge;
+  transition: all 0.33s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.holo-card::before {
+  background-position: var(--bg-x, 50%) var(--bg-y, 50%);
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+    115deg,
+    transparent 0%,
+    var(--primary) 25%,
+    transparent 47%,
+    transparent 53%,
+    var(--accent) 75%,
+    transparent 100%
+  );
+  opacity: 0.5;
+  filter: brightness(0.5) contrast(1);
+  z-index: 1;
+}
+
+.holo-card::after {
+  background-image: 
+    url("/cardBackground/sparkles.gif"),
+    url("/cardBackground/holo.png"),
+    linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
+  background-position: var(--spark-x, 50%) var(--spark-y, 50%);
+  background-size: 160%;
+  background-blend-mode: overlay;
+  z-index: 5;
+  filter: brightness(1) contrast(1);
+  transition: all 0.33s ease;
+  mix-blend-mode: color-dodge;
+  opacity: var(--opacity, 0.3);
+}
+
+.holo-card.active::after,
+.holo-card:hover::after {
+  filter: brightness(1) contrast(1);
+  opacity: 1;
+}
+
+.holo-card.active::before,
+.holo-card:hover::before {
+  background-image: linear-gradient(
+    115deg,
+    transparent 20%,
+    #ec9bb6; 36%,
+    #ccac6f; 43%,
+    #69e4a5; 50%,
+    #8ec5d6; 57%,
+    #b98cce; 64%,
+    transparent 80%
+  );
+  background-position: var(--bg-x, 50%) var(--bg-y, 50%);
+  background-size: 250% 250%;
+  opacity: 0.88;
+  filter: brightness(0.66) contrast(1.33);
+  transition: none;
+}
+
+.holo-card.active::before,
+.holo-card.active::after {
+  transition: none;
+}
+
 @layer base{
   :root { 
     --background: #e5f0e5;
@@ -43,7 +146,7 @@
   .bg-container-blur {
     background-color: color-mix(in srgb, var(--foreground) 50%, transparent);
     transition: background-color .5s ease;
-
+    backdrop-filter: blur(2px)
   }
   
   /* Only specific elements get background, not all divs */
@@ -81,44 +184,6 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
     z-index: 1;
-  }
-
-  
-  .fill:hover {
-    background:
-      radial-gradient(100% 58% at top   ,var(--foreground)   99%,green) calc(0*100%/3) 0/50.7% 180%,
-      radial-gradient(100% 58% at bottom,green 99%,var(--foreground)  ) calc(3*100%/3) 0/50.7% 180%,
-      radial-gradient(100% 58% at top   ,var(--foreground)   99%,green) calc(6*100%/3) 0/50.7% 180%,
-      radial-gradient(100% 58% at bottom,green 99%,var(--foreground)  ) calc(9*100%/3) 0/50.7% 180%,
-      linear-gradient(green,green) bottom/100% 0%;
-    background-repeat:no-repeat;
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    display:inline-block;
-    animation:
-      move 1s linear infinite;
-  }
-
-  .fill:before {
-    content:'';
-    height: 0;
-    transition: 2s;
-  }
-
-  .fill:hover:before {
-    height: 100%;
-  }
-
-  @keyframes move {
-    to {
-      background-position:
-        calc(-6*100%/3) 0,
-        calc(-3*100%/3) 0,
-        calc(0*100%/3) 0,
-        calc(3*100%/3) 0,
-        bottom;
-    }
   }
 
 }

@@ -225,6 +225,7 @@ export default function InteractiveGrid({
     let rafId: number;
     let lastWaveTime = 0;
     let scrollTimeout: NodeJS.Timeout;
+    let themeTimeout: NodeJS.Timeout;
     
     // Handle scroll events to reduce performance during scrolling
     const handleScroll = () => {
@@ -233,6 +234,15 @@ export default function InteractiveGrid({
       scrollTimeout = setTimeout(() => {
         scrollingRef.current = false;
       }, 150);
+    };
+
+    // Handle theme changes to reduce performance during theme transitions
+    const handleThemeChange = () => {
+      scrollingRef.current = true; // Use same flag to disable mouse effects
+      clearTimeout(themeTimeout);
+      themeTimeout = setTimeout(() => {
+        scrollingRef.current = false;
+      }, 500); // Match theme transition duration
     };
     
     // Intersection observer for visibility
@@ -245,11 +255,13 @@ export default function InteractiveGrid({
     }
     
     const combinedAnimationLoop = (currentTime: number) => {
-      // Only animate if visible and not scrolling
-      if (isVisibleRef.current && !scrollingRef.current) {
-        updateMouseEffects();
+      if (isVisibleRef.current) {
+        // Only run mouse effects when not scrolling for performance
+        if (!scrollingRef.current) {
+          updateMouseEffects();
+        }
         
-        // Wave animation with throttling
+        // Wave animation continues during scroll with throttling
         if (waveAmplitude > 0 && currentTime - lastWaveTime >= 33.33) { // 30fps for waves
           lastWaveTime = currentTime;
           const time = currentTime * 0.001 * waveSpeed;
@@ -270,12 +282,37 @@ export default function InteractiveGrid({
     document.addEventListener('mousemove', handleMouseMove, { passive: true });
     document.addEventListener('scroll', handleScroll, { passive: true });
     
+    // Listen for theme changes
+    const themeToggle = document.querySelector('[data-theme-toggle]') || document.querySelector('.theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', handleThemeChange);
+    }
+
+    // Alternative: listen for theme class changes on document/html
+    const themeObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          handleThemeChange();
+        }
+      });
+    });
+
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
     return () => {
       cancelAnimationFrame(rafId);
       clearTimeout(scrollTimeout);
+      clearTimeout(themeTimeout);
       observer.disconnect();
+      themeObserver.disconnect();
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('scroll', handleScroll);
+      if (themeToggle) {
+        themeToggle.removeEventListener('click', handleThemeChange);
+      }
     };
   }, [handleMouseMove, updateMouseEffects, waveAmplitude, waveSpeed]);
 

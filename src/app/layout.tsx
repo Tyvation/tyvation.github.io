@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import { ReactNode } from "react";
 import { Archivo_Black, Bebas_Neue } from 'next/font/google';
 import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
 import ScrollProgress from "@/app/components/ScrollProgress";
 import InteractiveGrid from "./components/InteractiveGrid";
 
@@ -34,7 +33,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ScrollProgress />
         <main className="max-w-3xl mx-auto px-4 pt-24 pb-12 bg-transparent relative z-10">{children}</main>
         <Navbar />
-        <Footer />
       </body>
     </html>
   );
