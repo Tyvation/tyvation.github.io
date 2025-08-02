@@ -60,8 +60,8 @@
 
 .holo-card::after {
   background-image: 
-    url("/cardBackground/sparkles.gif"),
-    url("/cardBackground/holo.png"),
+    url("/cardBackground/sparkles.webp"),
+    url("/cardBackground/holo.webp"),
     linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
   background-position: var(--spark-x, 50%) var(--spark-y, 50%);
   background-size: 160%;
