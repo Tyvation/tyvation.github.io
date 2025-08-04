@@ -1,19 +1,20 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Home, FolderKanban, Mail, User} from "lucide-react";
-import ThemeToggle from "@/app/components/ThemeToggle";
-
-const navItems = [
-  { href: "#home", icon: <Home size={22} />, label: "Home" },
-  { href: "#about", icon: <User size={22} />, label: "About" },
-  { href: "#projects", icon: <FolderKanban size={22} />, label: "Projects" },
-  { href: "#contact", icon: <Mail size={22} />, label: "Contact" },
-];
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function FloatingNavbar() {
+  const { t } = useLocale();
   const [activeSection, setActiveSection] = useState("home");
   const animationRef = useRef<number | null>(null);
   const isAnimatingRef = useRef(false);
+  
+  const navItems = [
+    { href: "#home", icon: <Home size={22} />, label: t("nav.home") },
+    { href: "#about", icon: <User size={22} />, label: t("nav.about") },
+    { href: "#projects", icon: <FolderKanban size={22} />, label: t("nav.projects") },
+    { href: "#contact", icon: <Mail size={22} />, label: t("nav.contact") },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,7 +54,7 @@ export default function FloatingNavbar() {
       // Cancel any existing animation
       cancelAnimation();
       
-      const headerOffset = 80;
+      const headerOffset = 20;
       const elementPosition = element.offsetTop;
       const offsetPosition = elementPosition - headerOffset;
       const startPosition = window.pageYOffset;
@@ -88,7 +89,7 @@ export default function FloatingNavbar() {
   };
 
   return (
-    <nav className="fixed top-2 left-1/2 -translate-x-1/2 z-50 liquid-glass border rounded-full px-2 py-1 flex gap-4 items-center">
+    <nav className="fixed top-2 left-1/2 -translate-x-1/2 z-50 liquid-glass border rounded-full px-2 py-1 flex gap-4 items-center overflow-visible">
       {navItems.map((item) => {
         const sectionId = item.href.substring(1);
         const isActive = activeSection === sectionId;
@@ -96,20 +97,19 @@ export default function FloatingNavbar() {
           <button
             key={item.href}
             onClick={() => scrollToSection(item.href)}
-            className={`relative group w-10 h-10 flex items-center justify-center rounded-full transition transform ${
+            className={`relative group w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110 ${
               isActive
-                ? "liquid-glass bg-primary text-background hover:bg-primary-hover hover:scale-110 transition-all duration-300"
-                : "text-foreground hover:scale-110 bg-transparent duration-300"
+                ? "liquid-glass bg-primary text-background"
+                : "text-foreground"
             }`}
           >
             {item.icon}
-            <span className="absolute bottom-[-1rem] text-xs text-foreground opacity-0 group-hover:opacity-100 group-hover:text-lg group-hover:bottom-[-2rem] transition-all pointer-events-none">
+            <span className="absolute top-12 left-1/2 -translate-x-1/2 text-xs text-foreground bg-background/50 px-2 py-1 rounded-md opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-120 transition duration-300 pointer-events-none whitespace-nowrap z-50 shadow-lg">
               {item.label}
             </span>
           </button>
         );
       })}
-      <ThemeToggle/>
     </nav>
   );
 }

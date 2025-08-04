@@ -3,8 +3,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import { archivoBlack, bebasNeue } from "@/app/layout";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function HeroBanner() {
+  const { t } = useLocale();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -79,8 +81,7 @@ export default function HeroBanner() {
               className="inline-block holo-card mx-1 my-2 p-4 border border-border/50 rounded-xl shadow-lg cursor-default hover:border-accent/70 hover:shadow-2xl hover:shadow-accent/20 hover:z-10 relative overflow-hidden"
               data-text={letter}
               style={{
-                animationDelay: `${index * 100}ms`,
-                animation: isVisible ? 'fadeInUp 0.8s ease-out forwards' : 'none',
+                animation: isVisible ? 'fadeInUp 0.3s ease-out forwards' : 'none',
                 transformStyle: 'preserve-3d',
                 isolation: 'isolate',
                 willChange: 'transform'
@@ -97,16 +98,16 @@ export default function HeroBanner() {
         
         {/* Subtitle */}
         <p 
-          className={`mt-4 text-lg md:text-xl text-foreground/70 transition-all duration-1000 delay-300 ${
+          className={`mt-4 text-lg md:text-xl text-foreground/70 transition-all duration-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}
         >
-          Creative Developer & Designer
+          {t("hero.subtitle")}
         </p>
         
         {/* Animated underline */}
         <div 
-          className={`rounded-2xl mx-auto mt-6 h-1 bg-gradient-to-r from-primary to-accent transition-all duration-1000 delay-500 ${
+          className={`rounded-2xl mx-auto mt-6 h-1 bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
             isVisible ? 'w-32 opacity-100' : 'w-0 opacity-0'
           }`}
         />

@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Welcome to My Portfolio",
+    "subtitle": "Creative Developer & Designer"
+  },
+  "pages": {
+    "about": {
+      "title": "About Me"
+    },
+    "projects": {
+      "title": "My Projects"
+    },
+    "contact": {
+      "title": "Get In Touch"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  },
+  "about": {
+    "greeting": "Hi, I'm Tyvation 👋",
+    "description": "I'm a **Computer Science** and **Information Engineering** Student, who loves minimal design and building beautiful things on the web.",
+    "portfolio": "This is my portfolio built with Next.js 15 and Tailwind CSS."
+  }
+}
