@@ -1,17 +1,13 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === 'production'
-
 const nextConfig: NextConfig = {
-  output: isProd ? 'export' : undefined,
+  output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true,
   },
   reactStrictMode: true,
-  assetPrefix: isProd
-    ? 'https://tyvation.github.io/'
-    : undefined
+  // 移除 assetPrefix，讓資源路徑自動對應當前域名
 };
 
 export default nextConfig;
